@@ -2,6 +2,7 @@ package com.example.listitemstring;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,10 +17,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
      private ListView mListViewCountry;
      private List<Country> mDataCountrys;
+     public static final String CONTRYNAME="COUNTRYNAME";
+     public static final String FLAGNAME="FLAGNAME";
+     public static final String POPULATION="POPULATION";
+     public static final String BUNDLE="BUNDLE";
 
 
 
-     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +45,31 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(MainActivity.this, "Selected :" + " " + country, Toast.LENGTH_LONG).show();
 //            }
 //        });
+//        mListViewCountry.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                Country country = (Country) mListViewCountry.getItemAtPosition(position);
+//                Toast.makeText(MainActivity.this, "Selected :" + " " + country.getCountryName(), Toast.LENGTH_LONG).show();
+//            }
+//        });
         mListViewCountry.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Country country = (Country) mListViewCountry.getItemAtPosition(position);
-                Toast.makeText(MainActivity.this, "Selected :" + " " + country.getCountryName(), Toast.LENGTH_LONG).show();
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Country country = (Country) mListViewCountry.getItemAtPosition(i);
+                String countryname= country.getCountryName();
+                Integer population = country.getPopulation();
+                String flagname = country.getFlagName();
+                Intent intent = new Intent(MainActivity.this, ChiTietCountry.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(CONTRYNAME, countryname);
+                bundle.putString(FLAGNAME, flagname);
+                bundle.putInt(POPULATION, population);
+                intent.putExtra(BUNDLE, bundle);
+                startActivity(intent);
             }
         });
+
+
     }
 
     private  List<Country> getListData() {

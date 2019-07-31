@@ -3,4 +3,6 @@
     <string name="item1">item1</string>
     <string name="population">Population: ...</string>
     <string name="country_name">Country Name</string>
+    <string name="ChiTietCountry">Man hinh chi tiet Country</string>
+    <string name="layoutchitietcountry"></string>
 </resources>
