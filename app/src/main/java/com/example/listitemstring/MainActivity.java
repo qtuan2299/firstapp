@@ -57,14 +57,13 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Country country = (Country) mListViewCountry.getItemAtPosition(i);
                 String countryname= country.getCountryName();
-                Integer population = country.getPopulation();
+                String population = String.valueOf(country.getPopulation());
                 String flagname = country.getFlagName();
+
                 Intent intent = new Intent(MainActivity.this, ChiTietCountry.class);
-                Bundle bundle = new Bundle();
-                bundle.putString(CONTRYNAME, countryname);
-                bundle.putString(FLAGNAME, flagname);
-                bundle.putInt(POPULATION, population);
-                intent.putExtra(BUNDLE, bundle);
+                intent.putExtra(CONTRYNAME, countryname);
+                intent.putExtra(FLAGNAME, flagname);
+                intent.putExtra(POPULATION, population);
                 startActivity(intent);
             }
         });

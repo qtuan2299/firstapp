@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ public class ChiTietCountry extends AppCompatActivity {
     TextView tvPopulation;
     ImageView ivFlagName;
     private Context context;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +26,15 @@ public class ChiTietCountry extends AppCompatActivity {
         ivFlagName = (ImageView) findViewById(R.id.imageView_flag);
 
         Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra(MainActivity.BUNDLE);
-        String name= (bundle.getString(MainActivity.CONTRYNAME));
-        int  pu= bundle.getInt(MainActivity.POPULATION);
+        tvContryName.setText("Country Name: " + intent.getStringExtra(MainActivity.CONTRYNAME));
+        tvPopulation.setText("Population : " + intent.getStringExtra(MainActivity.POPULATION));
 
-        tvPopulation.setText(pu);
-        tvContryName.setText(name);
+        String imageName = intent.getStringExtra(MainActivity.FLAGNAME);
+        int imageId = context.getResources().getIdentifier(imageName, "mipmap", context.getPackageName());
+        ivFlagName.setImageResource(imageId);
+
+
+
     }
+
 }

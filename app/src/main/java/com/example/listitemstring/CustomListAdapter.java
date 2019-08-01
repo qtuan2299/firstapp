@@ -60,20 +60,20 @@ class CustomListAdapter extends BaseAdapter {
             int imageId = this.getMipmapResIdByName(country.getFlagName());
 
             holder.flagView.setImageResource(imageId);
-            holder.textViewPosition.setText(String.valueOf(position));
+            holder.textViewPosition.setText(String.valueOf(imageId));
             return convertView;
         }
 
         // Tìm ID của Image ứng với tên của ảnh (Trong thư mục mipmap).
-        public int getMipmapResIdByName(String resName)  {
-            String pkgName = context.getPackageName();
 
-            // Trả về 0 nếu không tìm thấy.
-            int resID = context.getResources().getIdentifier(resName , "mipmap", pkgName);
-            Log.i("CustomListView", "Res Name: "+ resName+"==> Res ID = "+ resID);
-            return resID;
-        }
+    public int getMipmapResIdByName(String resName)  {
+        String pkgName = context.getPackageName();
 
+        // Trả về 0 nếu không tìm thấy.
+        int resID = context.getResources().getIdentifier(resName , "mipmap", pkgName);
+        Log.i("CustomListView", "Res Name: "+ resName+"==> Res ID = "+ resID);
+        return resID;
+    }
         static class ViewHolder {
             ImageView flagView;
             TextView countryNameView;
