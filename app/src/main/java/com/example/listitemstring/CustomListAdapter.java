@@ -60,7 +60,7 @@ class CustomListAdapter extends BaseAdapter {
             int imageId = this.getMipmapResIdByName(country.getFlagName());
 
             holder.flagView.setImageResource(imageId);
-            holder.textViewPosition.setText(String.valueOf(imageId));
+            holder.textViewPosition.setText(String.valueOf(position));
             return convertView;
         }
 
