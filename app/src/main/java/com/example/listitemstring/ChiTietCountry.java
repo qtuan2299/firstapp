@@ -30,11 +30,18 @@ public class ChiTietCountry extends AppCompatActivity {
         tvPopulation.setText("Population : " + intent.getStringExtra(MainActivity.POPULATION));
 
         String imageName = intent.getStringExtra(MainActivity.FLAGNAME);
-        int imageId = context.getResources().getIdentifier(imageName, "mipmap", context.getPackageName());
+        int imageId = getResourseId(this, imageName, "mipmap", getPackageName());
         ivFlagName.setImageResource(imageId);
+    }
 
-
-
+    public static int getResourseId(Context context, String pVariableName, String pResourcename, String pPackageName) throws RuntimeException {
+        try {
+            return context.getResources().getIdentifier(pVariableName, pResourcename, pPackageName);
+        } catch (Exception e) {
+            throw new RuntimeException("Error getting Resource ID.", e);
+        }
     }
 
 }
+
+
